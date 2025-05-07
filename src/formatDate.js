@@ -37,9 +37,7 @@ function formatDate(date, fromFormat, toFormat) {
     }
   }
 
-  if (year === Number()) {
-    year = year.toString();
-  }
+  year = year.toString();
 
   if (year.length > 3) {
     yearLong = year;
