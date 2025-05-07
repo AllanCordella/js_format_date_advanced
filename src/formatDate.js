@@ -9,8 +9,8 @@
  */
 function formatDate(date, fromFormat, toFormat) {
   const newDate = [];
-  const separator = fromFormat.pop();
-  const joiner = toFormat.pop();
+  const separator = fromFormat.slice(-1);
+  const joiner = toFormat.slice(-1);
   const explodedDate = date.split(separator);
   let day = 0;
   let year = 0;
@@ -19,7 +19,7 @@ function formatDate(date, fromFormat, toFormat) {
   let month = 0;
   let finalDate = '';
 
-  for (let i = 0; i <= fromFormat.length; i++) {
+  for (let i = 0; i < fromFormat.length - 1; i++) {
     if (fromFormat[i] === 'DD') {
       day = explodedDate[i];
     }
@@ -37,22 +37,26 @@ function formatDate(date, fromFormat, toFormat) {
     }
   }
 
+  if (year === Number()) {
+    year = year.toString();
+  }
+
   if (year.length > 3) {
     yearLong = year;
     yearShort = year.slice(2, 4);
   }
 
   if (year.length < 3 && year >= 30) {
-    yearLong = 19 + year;
+    yearLong = `19${year}`;
     yearShort = year;
   }
 
   if (year.length < 3 && year < 30) {
-    yearLong = 20 + year;
+    yearLong = `20${year}`;
     yearShort = year;
   }
 
-  for (let i = 0; i < toFormat.length; i++) {
+  for (let i = 0; i < toFormat.length - 1; i++) {
     if (toFormat[i] === 'DD') {
       newDate[i] = day;
     }
